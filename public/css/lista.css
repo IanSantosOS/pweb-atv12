@@ -1,0 +1,19 @@
+div:has(table) {
+  overflow: hidden;
+}
+
+tr {
+  vertical-align: middle;
+}
+
+thead>tr>th {
+  background-color: #ddd !important;
+}
+
+th {
+  padding-left: .8em !important;
+}
+
+td {
+  padding-left: 1em !important;
+}
