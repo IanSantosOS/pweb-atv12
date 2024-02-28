@@ -17,9 +17,5 @@ app.get("/cadastro" , (req, res) => {
     res.render("cadastro")
 })
 
-app.get("/sucesso" , (req, res) => {
-    res.render("sucesso")
-})
-
 
 app.listen(3000, () => console.log('servidor rodando'))
