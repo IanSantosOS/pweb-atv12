@@ -1,4 +1,4 @@
-# PWEB Atividade 12 CRUD - Cadastro e Remoção de Usuários
+# PWEB Atividade 12 - Cadastro de Usuários [CRUD]
 
 Projeto de PWEB para o treinamento de node.js com express.
 
@@ -11,7 +11,7 @@ Projeto de PWEB para o treinamento de node.js com express.
 
 ## Colaboradores
 
-| Função        | Nome                                               | Prioridade                                   |
+| Cargo         | Nome                                               | Função                                       |
 | ------------- | -------------------------------------------------- | -------------------------------------------- |
 | Orientador    | [Leo Fernandes](https://github.com/leofernandesmo) | Avaliar a atividade                          |
 | Coordenador   | [Ian dos Santos](https://github.com/IanSantosOS)   | Coordenar a equipe / Utilização do Bootstrap |
