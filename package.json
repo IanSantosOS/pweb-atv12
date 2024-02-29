@@ -1,14 +1,11 @@
 {
   "name": "pweb-atv12",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto de PWEB para o treinamento de node.js com express. [CRUD]",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "node --watch app.js"
-  },
-  "engines": {
-    "node": "^16.x"
   },
   "keywords": [],
   "author": "Emanuel Felix, Ian Santos, Joelma Gomes",
