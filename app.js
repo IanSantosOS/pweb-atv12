@@ -2,6 +2,19 @@
 const express = require("express")
 const app = express()
 
+const estados = [
+    'acre', 'alagoas', 'amapá', 'amazonas', 'bahia', 'ceará',
+    'espírito santo', 'goiás', 'maranhão', 'mato grosso do sul',
+    'minas gerais', 'pará', 'paraíba', 'paraná', 'pernambuco', 'piauí',
+    'rio de janeiro', 'rio grande do norte', 'rio grande do sul', 'rondônia',
+    'roraima', 'santa catarina', 'são paulo', 'sergipe', 'tocantins'
+]
+
+const opcoesEstadoCivil = [
+    'solteiro(a)', 'casado(a)', 'separado(a)',
+    'divorciado(a)', 'viúvo(a)'
+]
+
 const usuarios = []
 
 // Configuração
