@@ -17,5 +17,7 @@ app.get("/cadastro" , (req, res) => {
     res.render("cadastro")
 })
 
-
-app.listen(3000, () => console.log('servidor rodando'))
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+    console.log('Servidor rodando na porta: ' + PORT)
+})
