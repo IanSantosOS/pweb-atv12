@@ -6,6 +6,11 @@ input[type=radio] {
   accent-color: #003f4f;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+}
+
 .grid-column-2 {
   gap: 2em;
   display: grid;
