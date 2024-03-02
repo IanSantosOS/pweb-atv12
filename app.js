@@ -15,7 +15,16 @@ const opcoesEstadoCivil = [
     'divorciado(a)', 'viúvo(a)'
 ]
 
-const usuarios = []
+
+// Contas de exemplo apenas, como só servem para serem mostradas na tabela não foi colocado as informações adicionais
+const usuarios = [
+    {id: 0, nome: "Lucas Amorim",      sexo: "M",  dataNasc: "1986-07-26"},
+    {id: 1, nome: "Maria Clara",       sexo: "F",  dataNasc: "2004-03-17"},
+    {id: 6, nome: "Pedro Pascal",      sexo: "F",  dataNasc: "1975-04-02"},
+    {id: 4, nome: "João Fernandes",    sexo: "M",  dataNasc: "1988-06-24"},
+    {id: 5, nome: "Felícia de Abreu",  sexo: "F",  dataNasc: "2004-06-23"},
+    {id: 5, nome: "Jeniffer Laurence", sexo: "F",  dataNasc: "1994-08-12"}
+]
 
 
 // Configuração
@@ -36,22 +45,38 @@ app.get("/cadastro" , (req, res) => {
     res.render("cadastro")
 })
 
+app.get("/sucesso" , (req, res) => {
+    res.render("sucesso")
+})
 
-/* nome
- * cpf
- * dataNasc
- * sexo
- * estadoCivil
- * rendaMensal
- * logradouro
- * numero
- * complemento
- * estado
- * cidade
- */
+// Deletar Usuários
+app.delete('/delete/users/:id', (req, res) => {
+    let { id } = req.params // pega o id fornecido na url
+
+    let userID = usuarios.findIndex(user => user.id === id)
+    user.splice(1, userID)
+
+    return res.status(204).json({});
+})
+
+// Lista de Usuários
+app.get('/json/users', (req, res) => {
+    let listaUsers = usuarios.map(user => {
+        return {
+            id: user.id,
+            nome: user.nome,
+            sexo: user.sexo,
+            dataNasc: user.dataNasc
+        }
+    })
+
+    return res.status(200).json(listaUsers);
+})
+
+// Validações de Cadastro
 app.post('/json/cadastro', (req, res) => {
     let {
-        nome, cpf, dataNasc, estadoCivil,
+        nome, cpf, dataNasc, sexo, estadoCivil,
         rendaMensal, logradouro, numero,
         complemento, estado, cidade
     } = req.body
@@ -81,8 +106,15 @@ app.post('/json/cadastro', (req, res) => {
     if (!dataNasc) {
         errorMsg.dataNasc = 'Data de Nascimento é obrigatório'
     }
-    if ( (new Date(dataNasc)) >= (new Date()) ) {
-        errorMsg.dataNasc = 'Data de Nascimento inválida'
+    else {
+        let dataNascValida = (new Date(dataNasc)).toISOString().split('T')[0]
+        let dataAtual = (new Date()).toISOString().split('T')[0]
+        if (dataNasc !== dataNascValida) {
+            errorMsg.dataNasc = 'Data inexistente'
+        }
+        else if (dataNasc >= dataAtual) {
+            errorMsg.dataNasc = 'Data de Nascimento inválida'
+        }
     }
 
     if (!sexo) {
@@ -112,21 +144,25 @@ app.post('/json/cadastro', (req, res) => {
     else if (logradouro.length < 3) {
         errorMsg.logradouro = 'Logradouro deve ter no mínimo 3 caracteres'
     }
+    
+    if (!complemento) {
+        errorMsg.complemento = 'Complemento é obrigatório'
+    }
 
     if (!numero) {
         errorMsg.numero = 'Numero é obrigatório'
     }
-    if (isNaN(numero)) {
+    else if (isNaN(numero)) {
         errorMsg.numero = 'Numero não é um número'
     }
-    if (parseInt(numero) !== numero) {
+    else if (!Number.isInteger(numero)) {
         errorMsg.numero = 'Número deve ser do tipo inteiro'
     }
 
     if (!estado) {
         errorMsg.estado = 'Estado é obrigatório'
     }
-    if (!estadosBrasil.includes(estado)) {
+    else if (!estadosBrasil.includes(estado)) {
         errorMsg.estado = 'Estado inexistente'
     }
 
@@ -138,8 +174,11 @@ app.post('/json/cadastro', (req, res) => {
     }
 
     if (Object.keys(errorMsg).length === 0) {
-        usuarios.push(req.body)
-        return res.status(204)
+        usuarios.push({
+            id: usuarios.at(-1)?.id + 1 || 0,
+            ...req.body
+        })
+        return res.status(204).json({})
     }
     else {
         return res.status(400).json({ errorMsg })
@@ -148,7 +187,7 @@ app.post('/json/cadastro', (req, res) => {
 
 
 // Servidor no Ar
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3030
 app.listen(PORT, () => {
     console.log('Servidor rodando na porta: ' + PORT)
 })

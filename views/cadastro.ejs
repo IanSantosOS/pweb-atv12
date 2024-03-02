@@ -26,17 +26,20 @@
           <hr>
           <div class="mb-3">
               <label for="nome" class="form-label">Nome</label>
-              <input type="text" class="form-control" id="nome" name="nome" placeholder="Meu Nome" required>
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Meu Nome" aria-describedby="nome-error">
+              <div id="nome-error" class="invalid-feedback"></div>
           </div>
 
       <div class="grid-column-3">
           <div>
             <label for="cpf" class="form-label">CPF</label>
-            <input type="number" class="form-control" id="cpf" name="cpf" placeholder="00000000000" min="0" required>
+            <input type="number" class="form-control" id="cpf" name="cpf" placeholder="00000000000" aria-describedby="cpf-error">
+            <div id="cpf-error" class="invalid-feedback"></div>
           </div>
           <div>
             <label for="dataNasc" class="form-label">Data de Nascimento</label>
-            <input type="date" class="form-control" id="dataNasc" name="dataNasc" placeholder="Meu Nome" required>
+            <input type="date" class="form-control" id="dataNasc" name="dataNasc" aria-describedby="dataNasc-error">
+            <div id="dataNasc-error" class="invalid-feedback"></div>
           </div>
           <div class="align-self-end">
             <p>Sexo</p>
@@ -61,7 +64,8 @@
           </div>
           <div>
             <label for="rendaMensal" class="form-label">Renda Mensal</label>
-            <input type="number" class="form-control" id="rendaMensal" name="rendaMensal" placeholder="0,00" step="0.01" min="0" inputmode="decimal">
+            <input type="number" class="form-control" id="rendaMensal" name="rendaMensal" placeholder="0,00" step="0.01" inputmode="decimal" aria-describedby="rendaMensal-error">
+            <div id="rendaMensal-error" class="invalid-feedback"></div>
           </div>
         </div>
       </div>
@@ -72,16 +76,19 @@
         <div class="grid-column-2 mb-3">
           <div>
             <label for="logradouro" class="form-label">Logradouro</label>
-            <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Av. Paulista" required>
+            <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Av. Paulista" aria-describedby="logradouro-error">
+            <div id="logradouro-error" class="invalid-feedback"></div>
           </div>
           <div class="grid-column-2">
             <div>
               <label for="numero" class="form-label">Número</label>
-              <input type="number" class="form-control" id="numero" name="numero" placeholder="Nº" min="0" required>
+              <input type="number" class="form-control" id="numero" name="numero" placeholder="Nº" min="0" aria-describedby="numero-error">
+              <div id="numero-error" class="invalid-feedback"></div>
             </div>
             <div>
               <label for="complemento" class="form-label">Complemento</label>
-              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Casa, Apto, Loja" required>
+              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Casa, Apto, Loja" aria-describedby="complemento-error">
+              <div id="complemento-error" class="invalid-feedback"></div>
             </div>
           </div>
         </div>
@@ -120,7 +127,8 @@
           </div>
           <div>
             <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="São Paulo" required>
+            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="São Paulo" aria-describedby="cidade-error">
+            <div id="cidade-error" class="invalid-feedback"></div>
           </div>
         </div>
       </div>
