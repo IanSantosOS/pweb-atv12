@@ -24,10 +24,11 @@ Projeto de PWEB para o treinamento de node.js com express.
 
 ## Dependências
 
-| Site das Dependências e Frameworks      | Motivo da utilização               |
-| --------------------------------------- | ---------------------------------- |
-| [Bootstrap](https://getbootstrap.com/)  | Framework de Estilização           |
-| [EJS](https://ejs.co/)                  | HTML dinâmico usando JS            |
-| [Express](https://expressjs.com/pt-br/) | Framework para desenvolvimento web |
+| Site das Dependências e Frameworks                       | Motivo da utilização               |
+| -------------------------------------------------------- | ---------------------------------- |
+| [Bootstrap](https://getbootstrap.com/)                   | Framework de Estilização           |
+| [EJS](https://ejs.co/)                                   | HTML dinâmico usando JS            |
+| [Express](https://expressjs.com/pt-br/)                  | Framework para desenvolvimento web |
+| [Validator](https://github.com/validatorjs/validator.js) | Fazer validação de E-mail          |
 
-    npm i validator ejs express
+    npm i validator ejs express validator

@@ -11,6 +11,7 @@ form.addEventListener('submit', (event) => {
 
   let cadastroInputs = {
     nome : nome.value,
+    email: email.value,
     cpf: cpf.value,
     dataNasc: dataNasc.value,
     sexo: sexo.value,
@@ -29,7 +30,7 @@ form.addEventListener('submit', (event) => {
     headers: { 'Content-Type': 'application/json' }
   }
 
-  fetch('/json/cadastro', options)
+  fetch('/cadastro', options)
     .then(res => res.json())
     .catch(err => err.message = '')
     .then(data => {

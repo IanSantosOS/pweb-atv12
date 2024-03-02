@@ -1,4 +1,5 @@
 // Criação das Variáveis
+const { isEmail } = require('validator')
 const express = require("express")
 const app = express()
 
@@ -18,12 +19,12 @@ const opcoesEstadoCivil = [
 
 // Contas de exemplo apenas, como só servem para serem mostradas na tabela não foi colocado as informações adicionais
 const usuarios = [
-    {id: 0, nome: "Lucas Amorim",      sexo: "M",  dataNasc: "1986-07-26"},
-    {id: 1, nome: "Maria Clara",       sexo: "F",  dataNasc: "2004-03-17"},
-    {id: 6, nome: "Pedro Pascal",      sexo: "F",  dataNasc: "1975-04-02"},
-    {id: 4, nome: "João Fernandes",    sexo: "M",  dataNasc: "1988-06-24"},
-    {id: 5, nome: "Felícia de Abreu",  sexo: "F",  dataNasc: "2004-06-23"},
-    {id: 5, nome: "Jeniffer Laurence", sexo: "F",  dataNasc: "1994-08-12"}
+    {id: 0, nome: "Lucas Amorim",      email: "lucas.amorim@gmail.com", sexo: "M",  dataNasc: "1986-07-26"},
+    {id: 1, nome: "Maria Clara",       email: "maria.clara@gmail.com",  sexo: "F",  dataNasc: "2004-03-17"},
+    {id: 6, nome: "Pedro Pascal",      email: "pedro.pascal@gmail.com", sexo: "F",  dataNasc: "1975-04-02"},
+    {id: 4, nome: "João Fernandes",    email: "jp.ferdandes@gmail.com", sexo: "M",  dataNasc: "1988-06-24"},
+    {id: 5, nome: "Felícia de Abreu",  email: "felicia020@gmail.com",   sexo: "F",  dataNasc: "2004-06-23"},
+    {id: 5, nome: "Jeniffer Laurence", email: "jenifferla34@gmail.com", sexo: "F",  dataNasc: "1994-08-12"}
 ]
 
 
@@ -74,9 +75,9 @@ app.get('/json/users', (req, res) => {
 })
 
 // Validações de Cadastro
-app.post('/json/cadastro', (req, res) => {
+app.post('/cadastro', (req, res) => {
     let {
-        nome, cpf, dataNasc, sexo, estadoCivil,
+        nome, email, cpf, dataNasc, sexo, estadoCivil,
         rendaMensal, logradouro, numero,
         complemento, estado, cidade
     } = req.body
@@ -88,6 +89,13 @@ app.post('/json/cadastro', (req, res) => {
     }
     else if (nome.length < 3) {
         errorMsg.nome = 'Nome deve ter no mínimo 3 caracteres'
+    }
+    
+    if (!email) {
+        errorMsg.email = 'E-mail é obrigatório'
+    }
+    else if (!isEmail(email)) {
+        errorMsg.email = 'E-mail inválido'
     }
 
     if (!cpf) {
@@ -137,6 +145,9 @@ app.post('/json/cadastro', (req, res) => {
     else if (isNaN(rendaMensal)) {
         errorMsg.rendaMensal = 'Renda Mensal deve ser um valor numérico'
     }
+    else if (rendaMensal < 0 || rendaMensal == -0) {
+        errorMsg.rendaMensal = 'Renda Mensal não pode ser negativa'
+    }
 
     if (!logradouro) {
         errorMsg.logradouro = 'Logradouro é obrigatório'
@@ -155,7 +166,7 @@ app.post('/json/cadastro', (req, res) => {
     else if (isNaN(numero)) {
         errorMsg.numero = 'Numero não é um número'
     }
-    else if (!Number.isInteger(numero)) {
+    else if (!Number.isInteger(Number(numero))) {
         errorMsg.numero = 'Número deve ser do tipo inteiro'
     }
 
