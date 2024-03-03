@@ -21,9 +21,9 @@ const opcoesEstadoCivil = [
 const usuarios = [
     {id: 0, nome: "Lucas Amorim",      email: "lucas.amorim@gmail.com", sexo: "M",  dataNasc: "1986-07-26"},
     {id: 1, nome: "Maria Clara",       email: "maria.clara@gmail.com",  sexo: "F",  dataNasc: "2004-03-17"},
-    {id: 6, nome: "Pedro Pascal",      email: "pedro.pascal@gmail.com", sexo: "F",  dataNasc: "1975-04-02"},
-    {id: 4, nome: "João Fernandes",    email: "jp.ferdandes@gmail.com", sexo: "M",  dataNasc: "1988-06-24"},
-    {id: 5, nome: "Felícia de Abreu",  email: "felicia020@gmail.com",   sexo: "F",  dataNasc: "2004-06-23"},
+    {id: 2, nome: "Pedro Pascal",      email: "pedro.pascal@gmail.com", sexo: "M",  dataNasc: "1975-04-02"},
+    {id: 3, nome: "João Fernandes",    email: "jp.ferdandes@gmail.com", sexo: "M",  dataNasc: "1988-06-24"},
+    {id: 4, nome: "Felícia de Abreu",  email: "felicia020@gmail.com",   sexo: "F",  dataNasc: "2004-06-23"},
     {id: 5, nome: "Jeniffer Laurence", email: "jenifferla34@gmail.com", sexo: "F",  dataNasc: "1994-08-12"}
 ]
 
@@ -51,11 +51,11 @@ app.get("/sucesso" , (req, res) => {
 })
 
 // Deletar Usuários
-app.delete('/delete/users/:id', (req, res) => {
+app.delete('/delete/user/:id', (req, res) => {
     let { id } = req.params // pega o id fornecido na url
 
-    let userID = usuarios.findIndex(user => user.id === id)
-    user.splice(1, userID)
+    let userID = usuarios.findIndex(user => user.id == id)
+    usuarios.splice(userID, 1)
 
     return res.status(204).json({});
 })
@@ -66,6 +66,7 @@ app.get('/json/users', (req, res) => {
         return {
             id: user.id,
             nome: user.nome,
+            email: user.email,
             sexo: user.sexo,
             dataNasc: user.dataNasc
         }
