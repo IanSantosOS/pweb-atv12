@@ -18,14 +18,7 @@ const opcoesEstadoCivil = [
 
 
 // Contas de exemplo apenas, como só servem para serem mostradas na tabela não foi colocado as informações adicionais
-const usuarios = [
-    {id: 0, nome: "Lucas Amorim",      email: "lucas.amorim@gmail.com", sexo: "M",  dataNasc: "1986-07-26"},
-    {id: 1, nome: "Maria Clara",       email: "maria.clara@gmail.com",  sexo: "F",  dataNasc: "2004-03-17"},
-    {id: 2, nome: "Pedro Pascal",      email: "pedro.pascal@gmail.com", sexo: "M",  dataNasc: "1975-04-02"},
-    {id: 3, nome: "João Fernandes",    email: "jp.ferdandes@gmail.com", sexo: "M",  dataNasc: "1988-06-24"},
-    {id: 4, nome: "Felícia de Abreu",  email: "felicia020@gmail.com",   sexo: "F",  dataNasc: "2004-06-23"},
-    {id: 5, nome: "Jeniffer Laurence", email: "jenifferla34@gmail.com", sexo: "F",  dataNasc: "1994-08-12"}
-]
+const usuarios = [];
 
 
 // Configuração
@@ -85,7 +78,7 @@ app.post('/cadastro', (req, res) => {
 
     let errorMsg = {}
 
-    if (!nome) {
+    if (!nome.trim()) {
         errorMsg.nome = 'Nome é obrigatório'
     }
     else if (nome.length < 3) {
@@ -148,6 +141,9 @@ app.post('/cadastro', (req, res) => {
     }
     else if (rendaMensal < 0 || rendaMensal == -0) {
         errorMsg.rendaMensal = 'Renda Mensal não pode ser negativa'
+    }
+    else if (Number(rendaMensal).toFixed(2) !== rendaMensal) {
+        errorMsg.rendaMensal = 'Renda Mensal tem que ter 2 casas decimais'
     }
 
     if (!logradouro) {

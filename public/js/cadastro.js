@@ -16,7 +16,7 @@ form.addEventListener('submit', (event) => {
     dataNasc: dataNasc.value,
     sexo: sexo.value,
     estadoCivil: estadoCivil.value,
-    rendaMensal: Number(rendaMensal.value),
+    rendaMensal: rendaMensal.value,
     logradouro: logradouro.value,
     numero: Number(numero.value),
     complemento: complemento.value,
