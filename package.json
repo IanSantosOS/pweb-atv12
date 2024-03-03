@@ -4,8 +4,8 @@
   "description": "Projeto de PWEB para o treinamento de node.js com express. [CRUD]",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "node --watch app.js"
+    "start": "node ./bin/www",
+    "dev": "node --watch ./bin/www"
   },
   "keywords": [],
   "author": "Emanuel Felix, Ian Santos, Joelma Gomes",
