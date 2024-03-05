@@ -31,4 +31,5 @@ Projeto de PWEB para o treinamento de node.js com express.
 | [Express](https://expressjs.com/pt-br/)                  | Framework para desenvolvimento web |
 | [Validator](https://github.com/validatorjs/validator.js) | Fazer validação de E-mail          |
 
+
     npm i validator ejs express validator
