@@ -195,7 +195,7 @@ app.post('/cadastro', (req, res) => {
 
 
 // // Servidor no Ar
-// const PORT = process.env.PORT || 3030
+// const PORT = process.env.PORT || 3000
 // app.listen(PORT, () => {
 //     console.log('Servidor rodando na porta: ' + PORT)
 // })
