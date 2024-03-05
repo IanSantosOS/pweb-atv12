@@ -47,8 +47,8 @@ app.get("/sucesso" , (req, res) => {
 app.delete('/delete/user/:id', (req, res) => {
     let { id } = req.params // pega o id fornecido na url
 
-    let userID = usuarios.findIndex(user => user.id == id)
-    usuarios.splice(userID, 1)
+    let userIndex = usuarios.findIndex(user => user.id == id)
+    usuarios.splice(userIndex, 1)
 
     return res.status(204).json({});
 })
@@ -102,7 +102,7 @@ app.post('/cadastro', (req, res) => {
         errorMsg.cpf = 'CPF deve ser um número positivo de 11 dígitos'
     }
     else if (cpf.toString().length !== 11) {
-        errorMsg.cpf = 'CPF deve ter no mínimo 11 dígitos'
+        errorMsg.cpf = 'CPF tem que ter 11 dígitos'
     }
 
     if (!dataNasc) {
